@@ -26,9 +26,9 @@ wifi:
 
 captive_portal:
   
-external_components:
-  - source: github://JakeLC15/DS1603L_esphome@main
-    components: [ DS1603L ]
+#external_components:
+#  - source: github://JakeLC15/DS1603L_esphome@main
+#    components: [ DS1603L ]
     
 sensor: 
 
