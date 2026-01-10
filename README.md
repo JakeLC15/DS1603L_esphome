@@ -90,7 +90,7 @@ sensor:
 ### Sensor 2 ###
 ################
   - platform: DS1603L
-    uart_id: ds1603_2
+    uart_id: ds1603l_2
     min_level: 0.0
     max_level: 600.0
     min_volume: 0.0
