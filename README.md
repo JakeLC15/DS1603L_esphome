@@ -7,6 +7,9 @@ These sensors read from the bottom of a tank and need to have some kind of coupl
 
 ![ds1603l](https://github.com/user-attachments/assets/79b79543-64df-4499-a3a5-8f55cbde69c7)
 
+[ds1603-v1_0-datasheet.pdf](https://github.com/user-attachments/files/24546581/ds1603-v1_0-datasheet.pdf)
+
+
 
 ## **EXAMPLE**
 
