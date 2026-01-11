@@ -1,9 +1,37 @@
 # DS1603L_esphome
-DS1603L V1.0 Ultrasonic Sensor External Component with Level and Volume
+DS1603L V1.0 Ultrasonic Sensor with Level and Volume over UART without modification.
 
-DS1603L V1.0 ultrasonic sensor over UART without modification.
+## **MINIMUM CONFIGURATION**
+```
+uart:
+  - id: ds1603l_1
+    tx_pin: GPIOXX
+    rx_pin: GPIOXX
+    baud_rate: 9600  
+    
+sensor: 
+  - platform: DS1603L 
+    uart_id: ds1603l_1                
+    liquid_level:                     
+      name: "DS1603L 1 Distance"
+```
+## Configuration variables
 
-These sensors read from the bottom of a tank and need to have some kind of couplant for them to work. There can be no air gap between sensor and bottom of container. I use clear silicone grease, easily found at most automotive or hardware stores.
+- **liquid_level** (**Required**): Sensor output in mm.
+- **liquid_volume** (*Optional*): Output volume calculated from min/max.
+- **update_interval** (*Optional*): Set interval in seconds. Defaults to `60s`
+- **min_level** (*Optional*, int): Define minimum level in mm. Defaults to `0`.
+- **max_level** (*Optional*, int): Define maximum level in mm. Defaults to `1000`.
+- **min_volume** (*Optional*, int): Define minimum volume. Defaults to `0`.
+- **max_volume** (*Optional*, int): Define maximum volume. Defaults to `1000`.
+  
+These variables are for both level and volume
+- **name** (**Required**, string): Name your sensor.
+- **unit_of_measurement** (*Optional*, string): Level outputs mm. Volume should match min/max volume unit of measurement to calculate properly.
+- **accuracy_decimals** (*Optional*): Set decimals output. Defaults to `0`
+- **sensor options** (*Optional*): All other options from sensor including filters.
+>[!NOTE]
+>These sensors read from the bottom of a tank and need to have some kind of couplant for them to work. There can be no air gap between sensor and bottom of container. I use clear silicone grease, easily found at most automotive or hardware stores.
 
 ![ds1603l](https://github.com/user-attachments/assets/79b79543-64df-4499-a3a5-8f55cbde69c7)
 
@@ -11,7 +39,7 @@ These sensors read from the bottom of a tank and need to have some kind of coupl
 
 
 
-## **EXAMPLE**
+### **EXAMPLE**
 
 ```yaml
 esphome:
@@ -43,14 +71,10 @@ wifi:
 
 captive_portal:
 
-external_components:
-  - source: github://JakeLC15/DS1603L_esphome/DS1603L/
-    components: [ DS1603L ]
-
 uart:   #required for sensor
   - id: ds1603l_1
-    tx_pin: GPIO17
-    rx_pin: GPIO16
+    tx_pin: GPIOXX
+    rx_pin: GPIOXX
     baud_rate: 9600 
     
   - id: ds1603l_2
@@ -105,3 +129,4 @@ sensor:
       name: "DS1603L 2 Volume"
       unit_of_measurement: "gal"
   
+```
