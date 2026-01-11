@@ -10,7 +10,7 @@ uart:
     baud_rate: 9600  
     
 sensor: 
-  - platform: DS1603L 
+  - platform: ds1603l
     uart_id: ds1603l_1                
     liquid_level:                     
       name: "DS1603L 1 Distance"
@@ -87,7 +87,7 @@ sensor:
 ################
 ### Sensor 1 ###
 ################
-  - platform: DS1603L 
+  - platform: ds1603l
     uart_id: ds1603l_1                   # must match uart config
     min_level: 0.0                       # set minimum level in mm  *default 0.0
     max_level: 600.0                     # set maximum level in mm  *default 1000.0
@@ -113,7 +113,7 @@ sensor:
 ################
 ### Sensor 2 ###
 ################
-  - platform: DS1603L
+  - platform: ds1603l
     uart_id: ds1603l_2
     min_level: 0.0
     max_level: 600.0
