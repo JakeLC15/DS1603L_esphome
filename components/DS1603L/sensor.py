@@ -42,10 +42,10 @@ async def to_code(config):
     await cg.register_component(var, config)  # Register the component
     await uart.register_uart_device(var, config)  # Register UART communication
 
-    if CONF_LEVEL in config:
+    if CONF_LIQUID_LEVEL in config:
         sens = await sensor.new_sensor(config[CONF_LIQUID_LEVEL])
         cg.add(var.set_liquid_level_sensor(sens))
-    if CONF_VOLUME in config:
+    if CONF_LIQUID_VOLUME in config:
         sens = await sensor.new_sensor(config[CONF_LIQUID_VOLUME])
         cg.add(var.set_liquid_volume_sensor(sens))
     if CONF_MIN_VOLUME in config:
