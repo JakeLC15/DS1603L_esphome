@@ -1,7 +1,7 @@
 import esphome.codegen as cg
+from esphome.components import sensor, uart
 import esphome.config_validation as cv
-from esphome.components import uart, sensor
-from esphome.const import CONF_ID, UNIT_EMPTY, ICON_EMPTY
+from esphome.const import CONF_ID, ICON_EMPTY, UNIT_EMPTY
 
 DEPENDENCIES = ["uart"]
 ds1603l_ns = cg.esphome_ns.namespace("ds1603l")
