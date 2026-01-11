@@ -5,21 +5,21 @@
 #include "esphome/components/uart/uart.h"
 
 namespace esphome {
-namespace DS1603L {
+namespace ds1603l {
 
-class DS1603L : public sensor::Sensor, public PollingComponent, public uart::UARTDevice {
-  public:  
+class Ds1603l : public sensor::Sensor, public PollingComponent, public uart::UARTDevice {
+  public:
     void set_liquid_level_sensor(sensor::Sensor *liquid_level_sensor) { liquid_level_sensor_ = liquid_level_sensor; }
     void set_liquid_volume_sensor(sensor::Sensor *liquid_volume_sensor) { liquid_volume_sensor_ = liquid_volume_sensor; }
     void set_min_volume(float min_volume) {
       this->min_volume_ = min_volume; }
-    void set_max_volume(float max_volume) { 
+    void set_max_volume(float max_volume) {
       this->max_volume_ = max_volume; }
-    void set_min_level(float min_level) { 
+    void set_min_level(float min_level) {
       this->min_level_ = min_level; }
-    void set_max_level(float max_level) { 
+    void set_max_level(float max_level) {
       this->max_level_ = max_level; }
-    
+
     void setup() override;
     void loop() override;
     void update() override;
@@ -39,5 +39,5 @@ class DS1603L : public sensor::Sensor, public PollingComponent, public uart::UAR
   void parse_data_();  // Parse received data
 };
 
-}  // namespace DS1603L
+}  // namespace ds1603l
 }  // namespace esphome
