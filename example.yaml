@@ -31,7 +31,7 @@ captive_portal:
 #  - source: github://JakeLC15/DS1603L_esphome@main
 #    components: [ DS1603L ]
 
-uart: 
+uart:  # uart is required
   - id: tank1
     tx_pin: GPIO17
     rx_pin: GPIO16
