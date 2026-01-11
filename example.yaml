@@ -19,6 +19,7 @@ ota:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
+ 
 
   ap:
     ssid: Esp Fallback Hotspot
@@ -29,6 +30,17 @@ captive_portal:
 #external_components:
 #  - source: github://JakeLC15/DS1603L_esphome@main
 #    components: [ DS1603L ]
+
+uart: 
+  - id: tank1
+    tx_pin: GPIO17
+    rx_pin: GPIO16
+    baud_rate: 9600 
+    
+  - id: tank2
+    tx_pin: GPIO1    
+    rx_pin: GPIO3 
+    baud_rate: 9600 
     
 sensor: 
 
@@ -36,24 +48,24 @@ sensor:
 ### Sensor 1 ###
 ################
   - platform: DS1603L 
-    uart_id: ds1603l_1                       # must match uart config
-    min_level: 0.0                       # set minimum level in mm  default 0.0
-    max_level: 600.0                     # set maximum level in mm  default 1000.0
-    min_volume: 0.0                      # set minimum volume in whatever unit_of_measurement you prefer  default 0.0
-    max_volume: 55.0                     # set maximum volume in same unit as min_volume  default 1000.0
+    uart_id: ds1603l_1                   # must match uart config
+    min_level: 0.0                       # set minimum level in mm  *default 0.0
+    max_level: 600.0                     # set maximum level in mm  *default 1000.0
+    min_volume: 0.0                      # set minimum volume in whatever unit_of_measurement you prefer  *default 0.0
+    max_volume: 55.0                     # set maximum volume in same unit as min_volume  *default 1000.0
     liquid_level:                        # get level in mm
       state_class: measurement           # for HA
       device_class: distance             # for HA
-      name: "DS1603L 1 Distance"              # name for HA
-      unit_of_measurement: "mm"          # sensor outputs mm
+      name: "DS1603L 1 Distance"         # name for HA
+      unit_of_measurement: "mm"          # sensor outputs mm, can be set to anything but will need filtering to convert
       icon: mdi:arrow-expand-vertical    # icon for HA
       filters:                           # some filters I found useful
         - filter_out: 0
         - filter_out: nan
-        - delta: 0.1
+        - delta: 1.0
     liquid_volume:
       name: "DS1603L 1 Volume"
-      unit_of_measurement: "gal"         # any unit of measurement, calibrates linear from min/max volume
+      unit_of_measurement: "gal"
       filters:
         - filter_out: 0
         - filter_out: nan
@@ -73,36 +85,8 @@ sensor:
       device_class: distance 
       unit_of_measurement: "mm"
       icon: mdi:arrow-expand-vertical 
-      filters:
-        - filter_out: 0
-        - filter_out: nan
-        - delta: 0.1
     liquid_volume:
       name: "DS1603L 2 Volume"
-   
-# optional
-  - platform: internal_temperature
-    name: ${name} internal temperature
-# optional  
-  - platform: wifi_signal 
-    name: ${name} wifi signal 
-    update_interval: 60s
-
-switch: # optional
-  - platform: restart 
-    name: ${name} restart
-
-#required for sensor
-uart: 
-  - id: ds1603l_1
-    tx_pin: GPIO17
-    rx_pin: GPIO16
-    baud_rate: 9600 
-    
-  - id: ds1603l_2
-    tx_pin: GPIO1    
-    rx_pin: GPIO3 
-    baud_rate: 9600 
-
-
+      unit_of_measurement: "gal"
+  
 
