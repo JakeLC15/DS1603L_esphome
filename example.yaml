@@ -26,18 +26,18 @@ wifi:
     password: !secret ap_password
 
 captive_portal:
+  
+#external_components:
+#  - source: github://JakeLC15/DS1603L_esphome@main
+#    components: [ DS1603L ]
 
-external_components:
-  - source: github://JakeLC15/DS1603L_esphome/DS1603L/
-    components: [ DS1603L ]
-
-uart:   #required for sensor
-  - id: ds1603l_1
+uart:  # uart is required
+  - id: tank1
     tx_pin: GPIO17
     rx_pin: GPIO16
     baud_rate: 9600 
     
-  - id: ds1603l_2
+  - id: tank2
     tx_pin: GPIO1    
     rx_pin: GPIO3 
     baud_rate: 9600 
