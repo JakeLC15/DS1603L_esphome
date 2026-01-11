@@ -1,5 +1,5 @@
 #include "esphome/core/log.h"
-#include "DS1603L.h"
+#include "ds1603l.h"
 #include <algorithm>
 
 namespace esphome {
@@ -22,7 +22,7 @@ void Ds1603l::update() {
 
 void Ds1603l::loop() {
   static bool initialized = false;
-  uint32_t start_time = millis();
+  static unsigned long start_time = millis();
 
   // Ignore invalid data during the first 2 seconds after startup
   if (!initialized && (millis() - start_time < 2000)) {
