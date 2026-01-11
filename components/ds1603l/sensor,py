@@ -5,7 +5,7 @@ from esphome.const import CONF_ID, ICON_EMPTY, UNIT_EMPTY
 
 DEPENDENCIES = ["uart"]
 ds1603l_ns = cg.esphome_ns.namespace("ds1603l")
-ds1603l = Ds1603l_ns.class_("ds1603l", cg.PollingComponent, uart.UARTDevice)
+Ds1603l = ds1603l_ns.class_("Ds1603l", cg.PollingComponent, uart.UARTDevice)
 
 CONF_LIQUID_LEVEL = "liquid_level"
 CONF_LIQUID_VOLUME = "liquid_volume"
@@ -14,11 +14,11 @@ CONF_MAX_VOLUME = "max_volume"
 CONF_MIN_LEVEL = "min_level"
 CONF_MAX_LEVEL = "max_level"
 
-# Configuration schema for DS1603L
+# Configuration schema for ds1603l
 CONFIG_SCHEMA = uart.UART_DEVICE_SCHEMA.extend(
 
     {
-        cv.GenerateID(): cv.declare_id(ds1603l),
+        cv.GenerateID(): cv.declare_id(Ds1603l),
         cv.Optional(CONF_LIQUID_LEVEL): sensor.sensor_schema(
             unit_of_measurement=UNIT_EMPTY,  # Unit is customizable in YAML
             icon=ICON_EMPTY,                # Icon is customizable in YAML
@@ -56,5 +56,3 @@ async def to_code(config):
         cg.add(var.set_min_level(config[CONF_MIN_LEVEL]))
     if CONF_MAX_LEVEL in config:
         cg.add(var.set_max_level(config[CONF_MAX_LEVEL]))
-    
-    
