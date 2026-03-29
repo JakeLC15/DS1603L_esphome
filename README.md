@@ -8,7 +8,7 @@ params:
 
 ## ds1603l
 
-DS1603L V1.0 Ultrasonic Sensor with Level and Volume over UART without modification.
+DS1603L V1.0 Ultrasonic Sensor with Level, Volume and Percentage over UART without modification.
 
 ### **MINIMUM CONFIGURATION**
 
@@ -33,12 +33,13 @@ sensor:
 - **ds1603l_liquid_level** (**Required**): Sensor output in mm.
 - **ds1603l_liquid_volume** (*Optional*): Output volume calculated from min/max.
 - **update_interval** (*Optional*): Set interval in seconds. Defaults to `60s`
-- **ds1603l_min_level** (*Optional*, int): Define minimum level in mm. Defaults to `0`.
+- **ds1603l_min_level** (*Optional*, int): Define minimum level in mm. Defaults to `0`. A negative number is used if your sensor is in a standpipe below your tank.
 - **ds1603l_max_level** (*Optional*, int): Define maximum level in mm. Defaults to `1000`.
 - **ds1603l_min_volume** (*Optional*, int): Define minimum volume. Defaults to `0`.
 - **ds1603l_max_volume** (*Optional*, int): Define maximum volume. Defaults to `1000`.
+- **ds1603l_percentage** (*Optional*): Sensor output percentage
   
-These variables are for both level and volume
+These variables are for level, volume and percentage.
 
 - **name** (**Required**, string): Name your sensor.
 - **unit_of_measurement** (*Optional*, string): Level outputs mm. Volume should match min/max volume unit of measurement to calculate properly.
@@ -93,6 +94,8 @@ sensor:
       filters:
         - filter_out: nan
         - delta: 1.0
+    ds1603l_percentage:
+      name: "DS1603L 1 Percent"
 ################
 ### Sensor 2 ###
 ################
@@ -111,5 +114,7 @@ sensor:
     ds1603l_liquid_volume:
       name: "DS1603L 2 Volume"
       unit_of_measurement: "gal"
+    ds1603l_percentage:
+      name: "DS1603L 2 Percent"
   
 ```
